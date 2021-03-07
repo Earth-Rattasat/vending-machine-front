@@ -52,4 +52,8 @@ html {
   color: #fff;
   background-color: #35495e;
 }
+
+.text-primary {
+  color: #dd403a;
+}
 </style>
