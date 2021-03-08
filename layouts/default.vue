@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="layout">
     <Nuxt />
   </div>
 </template>
@@ -54,6 +54,25 @@ html {
 }
 
 .text-primary {
-  color: #dd403a;
+  color: #4281a4;
+  font-size: 5rem;
+}
+
+.container {
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.container > h1 {
+  font-size: 5rem;
+}
+
+.layout {
+  background-color: #ead2ac;
 }
 </style>

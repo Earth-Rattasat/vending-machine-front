@@ -3,7 +3,7 @@ import Vuesax from 'vuesax'
 
 Vue.use(Vuesax, {
   colors: {
-    primary: '#DD403A',
+    primary: '#4281A4',
     success: 'rgb(23, 201, 100)',
     danger: 'rgb(242, 19, 93)',
     warning: 'rgb(255, 130, 0)',

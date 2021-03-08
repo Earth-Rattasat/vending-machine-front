@@ -7,15 +7,11 @@
       <img src="../assets/images/machine.png" />
     </template>
     <template #text>
-      <div class="text-box">
-        <h3>Location</h3>
-        <p>{{ machine.address }}</p>
-      </div>
       <vs-button
         class="btn-buy"
         color="success"
-        @click="navigate(`/shop/${machine.id}`)"
-        >Buy Products</vs-button
+        @click="navigate(`/${$route.name}/${machine.id}`)"
+        >{{ btnContent }}</vs-button
       >
     </template>
   </vs-card>
@@ -29,12 +25,11 @@ export default {
       require: true,
       type: Object,
     },
-    state: {
-      require: true,
+    btnContent: {
+      default: 'Buy Product',
       type: String,
     },
   },
-
   methods: {
     navigate(path) {
       this.$router.push(path)

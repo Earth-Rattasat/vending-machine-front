@@ -1,12 +1,17 @@
 <template>
-  <div class="choose-machine-container container">
-    <h1>Choose Vending Machine</h1>
-    <list-items :items="machines" state="machine" />
+  <div class="admin-container container">
+    <h1>Admin</h1>
+    <list-items
+      :items="machines"
+      btnContent="More Detail"
+      state="machine"
+      site="admin"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Emit, Prop, Vue, Watch } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import ListItems from '~/components/ListItems.vue'
 import { Machine } from '~/components/types'
 
@@ -15,8 +20,9 @@ import { Machine } from '~/components/types'
     ListItems,
   },
 })
-export default class Machines extends Vue {
+export default class Admin extends Vue {
   private machines: Machine[] = []
+  
 
   private async fetchMachine(): Promise<void> {
     const resp = await this.$axios.$get(`/machines`)
@@ -30,7 +36,7 @@ export default class Machines extends Vue {
 </script>
 
 <style lang="scss">
-.choose-machine-container {
+.admin-container {
   justify-content: start !important;
 
   h1 {
