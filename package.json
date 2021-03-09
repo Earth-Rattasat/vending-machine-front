@@ -16,6 +16,8 @@
     "@nuxtjs/dotenv": "^1.4.1",
     "core-js": "^3.8.3",
     "nuxt": "^2.14.12",
+    "vue-google-maps": "^0.1.21",
+    "vue2-google-maps": "^0.10.7",
     "vuesax": "^4.0.1-alpha.25"
   },
   "devDependencies": {

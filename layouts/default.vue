@@ -75,4 +75,14 @@ html {
 .layout {
   background-color: #ead2ac;
 }
+
+.relative {
+  position: relative;
+}
+
+@media only screen and (max-width: 768px) {
+  .container > h1 {
+    font-size: 3rem;
+  }
+}
 </style>

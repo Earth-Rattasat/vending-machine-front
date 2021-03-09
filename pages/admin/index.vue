@@ -15,6 +15,11 @@ import { Component, Vue } from 'vue-property-decorator'
 import ListItems from '~/components/ListItems.vue'
 import { Machine } from '~/components/types'
 
+interface MachineWithNoti {
+  machineId: number
+  noti: number
+}
+
 @Component({
   components: {
     ListItems,
@@ -22,11 +27,17 @@ import { Machine } from '~/components/types'
 })
 export default class Admin extends Vue {
   private machines: Machine[] = []
-  
 
   private async fetchMachine(): Promise<void> {
-    const resp = await this.$axios.$get(`/machines`)
-    this.machines = resp
+    const respMachine = await this.$axios.$get(`/machines`)
+    const respNoti = await this.$axios.$get(`/machines/notification`)
+
+    this.machines = respMachine.map((machine: Machine) => {
+      const includeMachine = respNoti.find(
+        (noti: MachineWithNoti) => noti.machineId === machine.id
+      )
+      return Object.assign(machine, { noti: includeMachine.noti })
+    })
   }
 
   mounted() {

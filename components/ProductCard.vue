@@ -14,7 +14,14 @@
         </div>
         <div class="text-box" v-if="!isAddProduct">
           <h3>quantity :</h3>
-          <p>{{ product.quantity }}</p>
+          <span v-bind:class="{ 'text-red': product.quantity < 10 && isAdmin }">
+            {{ product.quantity }}
+          </span>
+          <span
+            v-show="product.quantity < 10 && product.quantity != 0 && isAdmin"
+            class="text-red text-warning"
+            >(almost sold out)</span
+          >
         </div>
         <vs-button
           class="btn-buy"
@@ -33,7 +40,7 @@
             class="add-product-item"
             v-model="quantity"
             type="tel"
-            placeholder="Quantity"
+            placeholder="Enter quantity"
             required
           />
           <vs-button class="add-product-item" color="success" type="submit"
@@ -43,9 +50,21 @@
       </template>
     </vs-card>
     <img
-      v-show="product.quantity === 0"
+      v-show="product.quantity === 0 && !isAdmin"
       class="sold-out-img"
       src="../assets/images/sold-out.png"
+    />
+    <img
+      v-show="product.quantity === 0 && isAdmin"
+      class="out-of-stock-img"
+      width="300"
+      src="../assets/images/out-of-stock.png"
+    />
+    <img
+      v-show="product.quantity < 10 && product.quantity !== 0 && isAdmin"
+      class="warning-img"
+      width="200"
+      src="../assets/images/warning.png"
     />
   </div>
 </template>
@@ -130,7 +149,7 @@ export default {
   position: relative;
 }
 
-.product-card > .vs-card {
+.product-card .vs-card-content {
   height: 100%;
 }
 
@@ -138,7 +157,30 @@ export default {
   position: absolute;
   z-index: 1;
   top: 5%;
-  left: 5%
+  left: 5%;
+}
+
+.warning-img {
+  position: absolute;
+  z-index: 1;
+  top: 5%;
+  left: 20%;
+}
+
+.text-red {
+  color: #dd403a;
+  font-weight: bold;
+}
+
+.text-warning {
+  margin-left: 0.5rem;
+}
+
+.out-of-stock-img {
+  position: absolute;
+  z-index: 1;
+  top: 16%;
+  left: 7%;
 }
 
 .add-product {

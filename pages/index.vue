@@ -15,7 +15,7 @@
       <vs-button class="site-btn" @click="$router.push('/admin')">
         Admin
       </vs-button>
-      <span class="notification">{{ notificationCount }}</span>
+      <span class="notification">{{ noti.length }}</span>
     </div>
   </div>
 </template>
@@ -25,16 +25,11 @@ export default {
   data() {
     return {
       noti: [],
-      notificationCount: 0,
     }
   },
   async mounted() {
-    this.$axios.$get(`/machines/soldout`).then((resp) => {
+    this.$axios.$get(`/machines/notification`).then((resp) => {
       this.noti = resp
-
-      resp.map((item) => {
-        this.notificationCount += item.soldOut
-      })
     })
   },
 }
@@ -66,6 +61,7 @@ export default {
     top: 15%;
 
     font-size: 1rem;
+    font-weight: bold;
     color: white;
   }
 }
