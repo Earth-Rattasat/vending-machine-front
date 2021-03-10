@@ -3,7 +3,7 @@
     <div class="grid-container" v-if="state == 'machine'">
       <machine-card
         v-for="(item, index) in items"
-        :key="index"
+        :key="index + item"
         :machine="item"
         :btnContent="btnContent"
       />
@@ -64,6 +64,7 @@ export default {
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 1rem;
+    padding: 1rem 0rem;
   }
 }
 

@@ -1,6 +1,20 @@
 <template>
   <div class="admin-container container">
     <h1>Admin</h1>
+    <div class="btn-create-group">
+      <vs-button
+        class="btn-create"
+        color="success"
+        @click="$router.push(`/admin/create/machine`)"
+        >Create new machine</vs-button
+      >
+      <vs-button
+        class="btn-create"
+        color="success"
+        @click="$router.push(`/admin/create/product`)"
+        >Create new product</vs-button
+      >
+    </div>
     <list-items
       :items="machines"
       btnContent="More Detail"
@@ -51,7 +65,20 @@ export default class Admin extends Vue {
   justify-content: start !important;
 
   h1 {
-    padding: 3rem 0rem;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+  }
+
+  .btn-create-group {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .btn-create {
+      margin: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+    }
   }
 }
 </style>

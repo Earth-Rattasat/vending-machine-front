@@ -15,7 +15,7 @@
       <vs-button class="site-btn" @click="$router.push('/admin')">
         Admin
       </vs-button>
-      <span class="notification">{{ noti.length }}</span>
+      <span class="notification">{{ notiCount }}</span>
     </div>
   </div>
 </template>
@@ -25,11 +25,16 @@ export default {
   data() {
     return {
       noti: [],
+      notiCount: 0,
     }
   },
   async mounted() {
     this.$axios.$get(`/machines/notification`).then((resp) => {
       this.noti = resp
+
+      this.noti.forEach((item) => {
+        if (item.noti > 0) this.notiCount += 1
+      })
     })
   },
 }

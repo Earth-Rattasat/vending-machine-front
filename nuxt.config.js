@@ -26,6 +26,7 @@ export default {
   plugins: [
     '@/plugins/vuesax',
     { src: '~/plugins/google-maps', ssr: true },
+    { src: '~/plugins/tabs', ssr: true },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

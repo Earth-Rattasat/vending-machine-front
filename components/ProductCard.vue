@@ -164,7 +164,7 @@ export default {
   position: absolute;
   z-index: 1;
   top: 5%;
-  left: 20%;
+  left: 12%;
 }
 
 .text-red {
