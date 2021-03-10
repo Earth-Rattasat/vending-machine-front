@@ -1,137 +1,73 @@
 <template>
   <div class="container">
-    <div>
-      <header class="content-logos">
-        <logo />
-        <span class="plus">+</span>
-        <VuesaxLogo />
-      </header>
-      <h1 class="title">Nuxt.js + Vuesax</h1>
-      <h2 class="subtitle">
-        <a href="https://vuesax.com/">Vuesax</a> is a framework of ui components
-        for <a href="https://vuejs.org/">Vuejs</a>, It was created to make new
-        interfaces that have a new trend and are visually beautiful
-      </h2>
-      <div class="links">
-        <h3 class="h3">Vuesax</h3>
-        <a
-          href="https://vuesax.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://discordapp.com/invite/9dsKtvB"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          Discord
-        </a>
-        <a
-          href="https://github.com/lusaxweb/vuesax"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-      <div class="links">
-        <h3 class="h3">Nuxt.js</h3>
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+    <h1 class="title">
+      <h1 class="text-primary">D</h1>
+      rinking
+      <h1 class="text-primary">V</h1>
+      ending
+      <h1 class="text-primary">M</h1>
+      achine
+    </h1>
+    <div class="site-box">
+      <vs-button class="site-btn" @click="$router.push('/shop')">
+        Shop
+      </vs-button>
+      <vs-button class="site-btn" @click="$router.push('/admin')">
+        Admin
+      </vs-button>
+      <span class="notification">{{ notiCount }}</span>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuesaxLogo from '~/components/VuesaxLogo.vue'
-
 export default {
-  components: {
-    Logo,
-    VuesaxLogo,
+  data() {
+    return {
+      noti: [],
+      notiCount: 0,
+    }
+  },
+  async mounted() {
+    this.$axios.$get(`/machines/notification`).then((resp) => {
+      this.noti = resp
+
+      this.noti.forEach((item) => {
+        if (item.noti > 0) this.notiCount += 1
+      })
+    })
   },
 }
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
+<style lang="scss">
 .title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 55px;
-  color: #35495e;
-  letter-spacing: 1px;
-  text-transform: capitalize;
-  margin: 25px 0;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 1.1rem;
-  color: #526488;
-  word-spacing: 2px;
-  padding-bottom: 15px;
-  max-width: 600px;
-}
-
-.subtitle a {
-  font-weight: 500;
-  color: inherit;
-}
-
-.links {
-  padding-top: 15px;
-  margin-bottom: 20px;
-}
-
-.content-logos {
   display: flex;
-  align-items: center;
+}
+
+.site-box {
+  display: flex;
   justify-content: center;
-  min-width: 500px;
-}
+  position: relative;
 
-.plus {
-  font-size: 2.5rem;
-  margin: 15px;
-  color: #35495e;
-}
+  .site-btn {
+    font-size: 2rem;
+    padding: 1rem 2rem;
+    margin: 3rem 2rem;
+  }
 
-.h3 {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-weight: 400;
-  margin: 10px;
+  .notification {
+    position: absolute;
+    background: #dd403a;
+    border-radius: 50%;
+    padding: 1rem 1.5rem;
+    z-index: 1;
+    right: 2%;
+    top: 15%;
+
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+  }
 }
 </style>

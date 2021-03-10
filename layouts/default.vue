@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="layout">
     <Nuxt />
   </div>
 </template>
@@ -51,5 +51,38 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+.text-primary {
+  color: #4281a4;
+  font-size: 5rem;
+}
+
+.container {
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.container > h1 {
+  font-size: 5rem;
+}
+
+.layout {
+  background-color: #ead2ac;
+}
+
+.relative {
+  position: relative;
+}
+
+@media only screen and (max-width: 768px) {
+  .container > h1 {
+    font-size: 3rem;
+  }
 }
 </style>
