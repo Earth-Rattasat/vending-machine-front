@@ -3,9 +3,9 @@
     <div class="grid-container" v-if="state == 'machine'">
       <machine-card
         v-for="(item, index) in items"
-        :key="index"
+        :key="index + item"
         :machine="item"
-        :state="state"
+        :btnContent="btnContent"
       />
     </div>
     <div class="grid-container" v-if="state == 'product'">
@@ -13,7 +13,6 @@
         v-for="(item, index) in products"
         :key="index"
         :product="item"
-        :state="state"
       />
     </div>
   </div>
@@ -37,14 +36,22 @@ export default {
       require: true,
       type: String,
     },
+    btnContent: {
+      default: 'Buy Product',
+      type: String,
+    },
   },
   computed: {
     products() {
       if (this.state === 'product') {
-        return this.items.map((item) => {
-          const product = item.product
-          return Object.assign(product, { quantity: item.quantity })
-        })
+        if (this.$route.name !== 'admin-mid-products') {
+          return this.items.map((item) => {
+            const product = item.product
+            return Object.assign(product, { quantity: item.quantity })
+          })
+        } else {
+          return this.items
+        }
       } else return []
     },
   },
@@ -52,13 +59,28 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/main.scss';
-
 .list-items-container {
   .grid-container {
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 1rem;
+    padding: 1rem 0rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .list-items-container {
+    .grid-container {
+      grid-template-columns: auto auto;
+    }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .list-items-container {
+    .grid-container {
+      grid-template-columns: auto;
+    }
   }
 }
 </style>

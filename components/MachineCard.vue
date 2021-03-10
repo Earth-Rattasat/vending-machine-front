@@ -7,16 +7,15 @@
       <img src="../assets/images/machine.png" />
     </template>
     <template #text>
-      <div class="text-box">
-        <h3>Location</h3>
-        <p>{{ machine.address }}</p>
+      <div class="relative">
+        <vs-button
+          class="btn-buy"
+          color="success"
+          @click="navigate(`/${$route.name}/${machine.id}`)"
+          >{{ btnContent }}</vs-button
+        >
+        <span v-show="machine.noti > 0" class="noti">{{ machine.noti }}</span>
       </div>
-      <vs-button
-        class="btn-buy"
-        color="success"
-        @click="navigate(`/shop/${machine.id}`)"
-        >Buy Products</vs-button
-      >
     </template>
   </vs-card>
 </template>
@@ -29,12 +28,11 @@ export default {
       require: true,
       type: Object,
     },
-    state: {
-      require: true,
+    btnContent: {
+      default: 'Buy Product',
       type: String,
     },
   },
-
   methods: {
     navigate(path) {
       this.$router.push(path)
@@ -52,6 +50,22 @@ export default {
 
   h3 {
     margin-right: 1rem;
+  }
+}
+
+.relative {
+  .noti {
+    position: absolute;
+    background: #dd403a;
+    border-radius: 50%;
+    padding: 0.5rem 0.9rem;
+    z-index: 1;
+    top: -10px;
+    right: -15px;
+
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
   }
 }
 

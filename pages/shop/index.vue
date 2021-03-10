@@ -30,8 +30,6 @@ export default class Machines extends Vue {
 </script>
 
 <style lang="scss">
-@import '@/assets/scss/main.scss';
-
 .choose-machine-container {
   justify-content: start !important;
 
